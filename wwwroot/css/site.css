@@ -113,28 +113,34 @@ h1, h2, h3, h4, h5, h6, .brand-name {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-.brand-name {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #ffffff;
+.site-logo-img {
+    height: 52px;
+    max-width: 280px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
 }
 
-.brand-accent {
-    color: var(--accent-cyan);
-    margin-left: 2px;
+.modern-navbar.scrolled .site-logo-img {
+    height: 46px;
 }
 
-.brand-logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
+.navbar-brand:hover .site-logo-img {
+    transform: scale(1.03);
 }
 
-.navbar-brand:hover .brand-logo-icon {
-    transform: scale(1.08) rotate(4deg);
+.site-logo-footer {
+    height: 62px;
+    max-width: 310px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
 }
+
+.site-logo-footer:hover {
+    transform: scale(1.03);
+}
+
 
 .nav-menu .nav-link {
     font-size: 0.95rem;
