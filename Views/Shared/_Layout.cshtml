@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIGIDPRO SOFT - Innovative Digital Solutions & Software Development</title>
+    <meta name="description" content="RIGIDPRO SOFT is a premier software development company delivering scalable web applications, mobile apps, cloud architecture, and AI-powered solutions." />
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Custom Site CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100">
+
+    <!-- Sticky Modern Header / Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top modern-navbar" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#hero">
+                <!-- SVG Logo Mark matching mockup -->
+                <div class="brand-logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 8L16 2L28 8V24L16 30L4 24V8Z" stroke="#2563EB" stroke-width="2.5" stroke-linejoin="round" fill="rgba(37,99,235,0.15)"/>
+                        <path d="M10 16L16 12L22 16L16 20L10 16Z" fill="#38BDF8"/>
+                        <path d="M16 20V26" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M10 16V22" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M22 16V22" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="brand-name">RIGIDPRO<span class="brand-accent">SOFT</span></span>
+            </a>
+
+            <button class="navbar-toggler custom-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="toggler-bar"></span>
+                <span class="toggler-bar"></span>
+                <span class="toggler-bar"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#innovations">Innovations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#why-us">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#contact" class="btn btn-get-in-touch">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <!-- Footer matching mockup -->
+    <footer class="site-footer">
+        <div class="container py-5">
+            <div class="row g-4 justify-content-between">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="brand-logo-icon">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 8L16 2L28 8V24L16 30L4 24V8Z" stroke="#38BDF8" stroke-width="2.5" stroke-linejoin="round" fill="rgba(56,189,248,0.15)"/>
+                                <path d="M10 16L16 12L22 16L16 20L10 16Z" fill="#38BDF8"/>
+                                <path d="M16 20V26" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M10 16V22" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M22 16V22" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="brand-name text-white">RIGIDPRO<span class="brand-accent">SOFT</span></span>
+                    </div>
+                    <p class="footer-tagline">Software Solutions for a Better Tomorrow</p>
+                    <p class="footer-desc">
+                        We are a leading software development company providing innovative and reliable digital solutions to help businesses grow and succeed.
+                    </p>
+                    <div class="footer-socials d-flex gap-2 mt-4">
+                        <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="footer-heading">Quick Links</h6>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#why-us">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#innovations">Innovations</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="footer-heading">Contact Information</h6>
+                    <ul class="footer-contact-list list-unstyled">
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-telephone-fill contact-icon"></i>
+                            <span>+880 1234 567890</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-envelope-fill contact-icon"></i>
+                            <span>info@rigidprosoft.com</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-geo-alt-fill contact-icon"></i>
+                            <span>Gulshan-2, Dhaka, Bangladesh</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom border-top border-secondary border-opacity-25 py-4">
+            <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+                <p class="mb-0 text-secondary text-sm">
+                    &copy; 2026 RIGIDPRO SOFT. All rights reserved.
+                </p>
+                <div class="footer-legal d-flex gap-3 text-sm">
+                    <a href="javascript:void(0)" class="text-secondary text-decoration-none">Privacy Policy</a>
+                    <span class="text-secondary">|</span>
+                    <a href="javascript:void(0)" class="text-secondary text-decoration-none">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back To Top Button -->
+    <button type="button" class="btn btn-back-to-top" id="btnBackToTop" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Scripts: jQuery, Bootstrap Bundle, Custom site.js -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
