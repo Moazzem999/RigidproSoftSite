@@ -240,4 +240,182 @@ $(document).ready(function () {
         const modal = new bootstrap.Modal(document.getElementById('contactSuccessModal'));
         modal.show();
     }
+
+    // =========================================================================
+    // 6. Futuristic Dynamic Effects
+    // =========================================================================
+
+    // A. Card Spotlight Cursor Tracking Sheen
+    $(document).on('mousemove', '.spotlight-card', function (e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        this.style.setProperty('--mouse-x', `${x}px`);
+        this.style.setProperty('--mouse-y', `${y}px`);
+    });
+
+    // B. Hero 3D Tilt on Mousemove
+    $('#hero').on('mousemove', function (e) {
+        const $visual = $('#heroVisual');
+        if ($visual.length && window.innerWidth > 992) {
+            const rect = this.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            $visual.css('transform', `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 10}deg) translateY(-4px)`);
+        }
+    }).on('mouseleave', function () {
+        $('#heroVisual').css('transform', 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)');
+    });
+
+    // C. Scroll Reveal Observer with Stagger
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    $(entry.target).addClass('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        $('.reveal-item').each(function (idx) {
+            revealObserver.observe(this);
+        });
+    } else {
+        $('.reveal-item').addClass('revealed');
+    }
+
+    // D. Interactive Particle & Neural Network Canvas
+    const canvas = document.getElementById('heroCanvas');
+    if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+        let animationFrameId = null;
+        let isRunning = true;
+
+        const particles = [];
+        const particleCount = Math.min(55, Math.floor((width * height) / 18000));
+        let mouse = { x: -1000, y: -1000, radius: 140 };
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.7;
+                this.vy = (Math.random() - 0.5) * 0.7;
+                this.radius = Math.random() * 2 + 1.2;
+                this.color = Math.random() > 0.4 ? 'rgba(56, 189, 248, ' : 'rgba(37, 99, 235, ';
+                this.baseAlpha = Math.random() * 0.45 + 0.25;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse interaction
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < mouse.radius) {
+                    const force = (mouse.radius - dist) / mouse.radius;
+                    this.x -= (dx / dist) * force * 3;
+                    this.y -= (dy / dist) * force * 3;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + this.baseAlpha + ')';
+                ctx.shadowColor = '#38bdf8';
+                ctx.shadowBlur = 6;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function renderNetwork() {
+            if (!isRunning) return;
+            ctx.clearRect(0, 0, width, height);
+
+            // Connect nearby particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const maxDist = 125;
+
+                    if (dist < maxDist) {
+                        const alpha = (1 - dist / maxDist) * 0.25;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            animationFrameId = requestAnimationFrame(renderNetwork);
+        }
+
+        renderNetwork();
+
+        // Canvas Mousemove
+        $(window).on('mousemove', function (e) {
+            const heroRect = canvas.getBoundingClientRect();
+            if (e.clientY >= heroRect.top && e.clientY <= heroRect.bottom) {
+                mouse.x = e.clientX - heroRect.left;
+                mouse.y = e.clientY - heroRect.top;
+            } else {
+                mouse.x = -1000;
+                mouse.y = -1000;
+            }
+        });
+
+        // Resize
+        let resizeTimer;
+        $(window).on('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                width = canvas.width = canvas.offsetWidth;
+                height = canvas.height = canvas.offsetHeight;
+            }, 150);
+        });
+
+        // Pause loop when scrolled past hero to maximize battery & performance
+        if ('IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        if (!isRunning) {
+                            isRunning = true;
+                            renderNetwork();
+                        }
+                    } else {
+                        isRunning = false;
+                        cancelAnimationFrame(animationFrameId);
+                    }
+                });
+            }, { threshold: 0.05 });
+
+            heroObserver.observe(document.getElementById('hero'));
+        }
+    }
 });
+
